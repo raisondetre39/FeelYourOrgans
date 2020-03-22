@@ -5,9 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
-    <Folder Include="RepositoryInterfaces\" />
-    <Folder Include="Context\" />
+    <ProjectReference Include="..\FeelYourOrgans.Contracts\FeelYourOrgans.Contracts.csproj" />
+    <ProjectReference Include="..\FeelYourOrgans.Middleware\FeelYourOrgans.Middleware.csproj" />
   </ItemGroup>
 
 </Project>

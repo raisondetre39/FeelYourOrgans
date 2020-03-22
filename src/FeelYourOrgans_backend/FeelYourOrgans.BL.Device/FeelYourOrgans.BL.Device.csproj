@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-    <Folder Include="ServiceInterfaces\" />
+    <ProjectReference Include="..\FeelYourOrgans.Contracts\FeelYourOrgans.Contracts.csproj" />
+    <ProjectReference Include="..\FeelYourOrgans.DAL.Device\FeelYourOrgans.DAL.Device.csproj" />
   </ItemGroup>
 
 </Project>
