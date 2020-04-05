@@ -1,3 +1,5 @@
+using FeelYourOrgans.Middleware.ExceptionHandling;
+using FeelYourOrgans.WebApi.User.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +26,14 @@ namespace FeelYourOrgans.WebApi.User
 
             // Add S3 to the ASP.NET Core dependency injection framework.
             services.AddAWSService<Amazon.S3.IAmazonS3>();
+
+            services.AddOptions();
+            services.AddServices();
+            services.AddMappings();
+            services.AddCors();
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Latest);
+            services.AddSwaggerDocumentation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
@@ -39,6 +49,13 @@ namespace FeelYourOrgans.WebApi.User
             }
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
+            app.UseMiddleware<GlobalExeptionHandler>();
+            app.UseStaticFiles();
+            app.UseSwaggerDocumentation();
+            app.UseCors(builder => builder.WithOrigins("https://localhost:4200")
+                   .AllowAnyHeader()
+                   .AllowAnyMethod());
             app.UseMvc();
         }
     }

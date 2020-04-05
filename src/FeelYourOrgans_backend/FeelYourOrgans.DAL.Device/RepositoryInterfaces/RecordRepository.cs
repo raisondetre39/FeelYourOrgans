@@ -1,7 +1,6 @@
 ﻿using FeelYourOrgans.Contracts.Entities;
 using FeelYourOrgans.DAL.Device.Repositories;
 using FeelYourOrgans.Middleware.Shared;
-using System;
 using System.Threading.Tasks;
 
 namespace FeelYourOrgans.DAL.Device.RepositoryInterfaces

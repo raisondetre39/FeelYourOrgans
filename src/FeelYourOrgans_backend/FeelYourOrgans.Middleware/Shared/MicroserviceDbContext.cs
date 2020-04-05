@@ -5,7 +5,7 @@ namespace FeelYourOrgans.Middleware.Shared
 {
     public class MicroserviceDbContext : DbContext 
     {
-        private readonly string CONNECTION = "Server=health-control.cmhkqigvllj1.us-east-1.rds.amazonaws.com;Database=health_control;Uid=admin;Pwd=mTq5KM8MDFCi4ZJvhAgu;";
+        private readonly string CONNECTION = "Server=health-control.cmhkqigvllj1.us-east-1.rds.amazonaws.com;Database=feel_your_limbs;Uid=admin;Pwd=mTq5KM8MDFCi4ZJvhAgu;";
 
         public MicroserviceDbContext()
         {

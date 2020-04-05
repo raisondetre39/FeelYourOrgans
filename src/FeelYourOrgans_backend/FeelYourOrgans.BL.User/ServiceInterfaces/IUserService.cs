@@ -1,7 +1,5 @@
 ﻿using FeelYourOrgans.Contracts.Enums;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FeelYourOrgans.BL.User.ServiceInterfaces
@@ -11,5 +9,11 @@ namespace FeelYourOrgans.BL.User.ServiceInterfaces
         Task<Contracts.Entities.User> GetById(int id);
 
         Task<CreateUserStatus> Create(Contracts.Entities.User request);
+
+        Task<UpdateUserStatus> UpdateAsync(Contracts.Entities.User entity);
+
+        Task<IEnumerable<Contracts.Entities.User>> GetUsers();
+
+        Task DeleteUser(int id);
     }
 }

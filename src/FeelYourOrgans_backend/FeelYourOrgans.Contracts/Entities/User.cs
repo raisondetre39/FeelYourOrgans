@@ -1,4 +1,6 @@
-﻿namespace FeelYourOrgans.Contracts.Entities
+﻿using Newtonsoft.Json;
+
+namespace FeelYourOrgans.Contracts.Entities
 {
     public class User : BaseEntity
     {
@@ -8,6 +10,7 @@
 
         public string LastName { get; set; }
 
+        [JsonIgnore]
         public string Password { get; set; }
 
         public virtual Iot Iot { get; set; }

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <AWSProjectType>Lambda</AWSProjectType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="AWSSDK.S3" Version="3.3.110.12" />
+    <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.3.100.1" />
+    <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="4.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.2.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.2.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.2.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FeelYourOrgans.BL.Device\FeelYourOrgans.BL.Device.csproj" />
+    <ProjectReference Include="..\FeelYourOrgans.Contracts\FeelYourOrgans.Contracts.csproj" />
+    <ProjectReference Include="..\FeelYourOrgans.DAL.Device\FeelYourOrgans.DAL.Device.csproj" />
+    <ProjectReference Include="..\FeelYourOrgans.Middleware\FeelYourOrgans.Middleware.csproj" />
+  </ItemGroup>
+</Project>

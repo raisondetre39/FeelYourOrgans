@@ -3,6 +3,9 @@ using FeelYourOrgans.Contracts.Enums;
 using FeelYourOrgans.DAL.User.RepositoryInterfaces;
 using FeelYourOrgans.Middleware.Shared;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace FeelYourOrgans.DAL.User.Repositories
@@ -42,12 +45,65 @@ namespace FeelYourOrgans.DAL.User.Repositories
             }
         }
 
-        private async Task<bool> IsEmailUnique(string email)
+        public async Task<Contracts.Entities.User> GetBy(Expression<Func<Contracts.Entities.User, bool>> expression)
         {
             using (var context = new MicroserviceDbContext())
             {
+                return await context.Set<Contracts.Entities.User>()
+                    .FirstOrDefaultAsync(expression);
+            }
+        }
+
+        public async Task<IEnumerable<Contracts.Entities.User>> Get()
+        {
+            using (var context = new MicroserviceDbContext())
+            {
+                return await context.Set<Contracts.Entities.User>()
+                    .Include(item => item.Iot)
+                    .ThenInclude(item => item.Limb)
+                    .ToListAsync();
+            }
+        }
+
+        private async Task<bool> IsEmailUnique(string email, int id = 0)
+        {
+            using (var context = new MicroserviceDbContext())
+            {
+                if (id == 0)
                 return !(await context.Set<Contracts.Entities.User>()
                     .AnyAsync(item => item.Email == email));
+
+                return !(await context.Set<Contracts.Entities.User>()
+                    .AnyAsync(item => item.Email == email && item.Id != id));
+            }
+        }
+
+        public async Task<UpdateUserStatus> UpdateAsync(Contracts.Entities.User entity)
+        {
+            using (var context = new MicroserviceDbContext())
+            {
+                var isUnique = await IsEmailUnique(entity.Email, entity.Id);
+
+                if (!isUnique)
+                    return UpdateUserStatus.NonUniqueEmail;
+
+                context.Update(entity);
+                await context.SaveChangesAsync();
+
+                return UpdateUserStatus.Success;
+            }
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            using (var context = new MicroserviceDbContext())
+            {
+                var user = await context.Set<Contracts.Entities.User>()
+                    .FirstOrDefaultAsync(item => item.Id == id);
+
+                if (user != null)
+                    context.Set<Contracts.Entities.User>()
+                        .Remove(user);
             }
         }
     }

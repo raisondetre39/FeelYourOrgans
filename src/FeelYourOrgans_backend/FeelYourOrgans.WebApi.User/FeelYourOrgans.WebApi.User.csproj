@@ -5,9 +5,21 @@
     <AWSProjectType>Lambda</AWSProjectType>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="AWSSDK.S3" Version="3.3.110.12" />
     <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.3.100.1" />
     <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="4.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.2.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.2.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.2.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FeelYourOrgans.BL.User\FeelYourOrgans.BL.User.csproj" />
+    <ProjectReference Include="..\FeelYourOrgans.DAL.User\FeelYourOrgans.DAL.User.csproj" />
   </ItemGroup>
 </Project>
