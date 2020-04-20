@@ -4,7 +4,7 @@ namespace FeelYourOrgans.Contracts.Requests
 {
     public class AddIotRecordRequest
     {
-        public int Value { get; set; }
+        public double Value { get; set; }
 
         public bool IsCritical { get; set; }
 

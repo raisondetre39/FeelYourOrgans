@@ -32,7 +32,7 @@ namespace FeelYourOrgans.DAL.Device.RepositoryInterfaces
                     return CreateDeviceStatus.LimbNotExists;
 
                 var isIndicatorsExists = await _indicatorRepository
-                    .IsExist(entity.IotIndicators.Select(item => item.Id).ToArray());
+                    .IsExist(entity.IotIndicators.Select(item => item.IndicatorId).ToArray());
 
                 if (!isIndicatorsExists)
                     return CreateDeviceStatus.IndicatorNotExists;
@@ -48,7 +48,7 @@ namespace FeelYourOrgans.DAL.Device.RepositoryInterfaces
         {
             using (var context = new MicroserviceDbContext())
             {
-                return await context.Set<Iot>()
+                return await context.Set<Iot>().Include(iten => iten.Limb)
                     .ToListAsync();
             }
         }
@@ -58,6 +58,7 @@ namespace FeelYourOrgans.DAL.Device.RepositoryInterfaces
             using (var context = new MicroserviceDbContext())
             {
                 var iot = await context.Set<Iot>().Include(item => item.IotIndicators)
+                    .Include(iten => iten.Limb)
                     .FirstOrDefaultAsync(item => item.Id == id);
 
                 iot.IotIndicators
@@ -65,6 +66,22 @@ namespace FeelYourOrgans.DAL.Device.RepositoryInterfaces
                         .Where(item => item.IotIndicatorId == ind.Id).ToList());
 
                 return iot;
+            }
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            using (var context = new MicroserviceDbContext())
+            {
+                var iot = await context.Set<Iot>()
+                    .FirstOrDefaultAsync(item => item.Id == id);
+
+                if (iot != null)
+                {
+                    context.Set<Iot>()
+                        .Remove(iot);
+                    await context.SaveChangesAsync();
+                }
             }
         }
     }

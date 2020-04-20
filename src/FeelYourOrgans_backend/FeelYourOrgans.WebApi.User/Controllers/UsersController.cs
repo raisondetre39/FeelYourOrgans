@@ -56,7 +56,7 @@ namespace FeelYourOrgans.WebApi.User.Controllers
             if (result == CreateUserStatus.NonUniqueEmail)
                 return BadRequest($"User with email: {request.Email} already exists");
 
-            return Created("UserController", result);
+            return Created("UserController", request);
         }
 
         [HttpPut("{id}")]

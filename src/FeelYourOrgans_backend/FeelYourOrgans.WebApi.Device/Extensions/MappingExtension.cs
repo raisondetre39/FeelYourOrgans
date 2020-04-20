@@ -17,7 +17,7 @@ namespace FeelYourOrgans.WebApi.Device.Extensions
             var mapperConfig = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<IotRecord, AddIotRecordRequest>().ReverseMap();
-                cfg.CreateMap<Iot, CreateDeviceRequest>().ReverseMap();
+                cfg.CreateMap<CreateDeviceRequest, Iot>().ReverseMap();
             });
             return mapperConfig.CreateMapper();
         }

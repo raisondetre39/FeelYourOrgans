@@ -30,5 +30,10 @@ namespace FeelYourOrgans.BL.Device.Services
         {
             return await _iotRepository.Get();
         }
+        
+        public async Task DeleteDevice(int id)
+        {
+            await _iotRepository.DeleteAsync(id);
+        }
     }
 }

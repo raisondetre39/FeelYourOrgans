@@ -10,7 +10,7 @@ namespace FeelYourOrgans.Contracts.Entities
         [JsonIgnore]
         public virtual IotIndicator IotIndicator { get; set; }
 
-        public int Value { get; set; }
+        public double Value { get; set; }
         
         public bool IsCritical { get; set; }
 

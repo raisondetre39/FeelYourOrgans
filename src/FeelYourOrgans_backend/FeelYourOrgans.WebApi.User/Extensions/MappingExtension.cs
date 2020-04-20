@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FeelYourOrgans.Contracts.Requests;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -14,8 +15,8 @@ namespace FeelYourOrgans.WebApi.User.Extensions
         {
             var mapperConfig = new MapperConfiguration(cfg =>
             {
-              //  cfg.CreateMap<IotRecord, AddIotRecordRequest>().ReverseMap();
-              //  cfg.CreateMap<Iot, CreateDeviceRequest>().ReverseMap();
+                cfg.CreateMap<CreateUserRequest, Contracts.Entities.User>().ReverseMap();
+                cfg.CreateMap<UpdateUserRequest, Contracts.Entities.User>().ReverseMap();
             });
             return mapperConfig.CreateMapper();
         }

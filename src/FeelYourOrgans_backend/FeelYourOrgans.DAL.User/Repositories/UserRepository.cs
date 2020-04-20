@@ -5,6 +5,7 @@ using FeelYourOrgans.Middleware.Shared;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -17,7 +18,7 @@ namespace FeelYourOrgans.DAL.User.Repositories
             using (var context = new MicroserviceDbContext())
             {
                 var isIotExists = await context.Set<Iot>()
-                    .AnyAsync(iot => iot.Id == entity.Id);
+                    .AnyAsync(iot => iot.Id == entity.IotId);
 
                 if (!isIotExists)
                     return CreateUserStatus.IotNotExists;
@@ -61,6 +62,7 @@ namespace FeelYourOrgans.DAL.User.Repositories
                 return await context.Set<Contracts.Entities.User>()
                     .Include(item => item.Iot)
                     .ThenInclude(item => item.Limb)
+                    .Where(item => !item.IsAdmin)
                     .ToListAsync();
             }
         }
@@ -87,7 +89,14 @@ namespace FeelYourOrgans.DAL.User.Repositories
                 if (!isUnique)
                     return UpdateUserStatus.NonUniqueEmail;
 
-                context.Update(entity);
+                var user = context.Set<Contracts.Entities.User>()
+                    .FirstOrDefault(item => item.Id == entity.Id);
+
+                user.LastName = entity.LastName;
+                user.FirstName = entity.FirstName;
+                user.Email = entity.Email;
+
+                context.Update(user);
                 await context.SaveChangesAsync();
 
                 return UpdateUserStatus.Success;
@@ -102,8 +111,11 @@ namespace FeelYourOrgans.DAL.User.Repositories
                     .FirstOrDefaultAsync(item => item.Id == id);
 
                 if (user != null)
+                {
                     context.Set<Contracts.Entities.User>()
-                        .Remove(user);
+                      .Remove(user);
+                    await context.SaveChangesAsync();
+                }
             }
         }
     }

@@ -7,9 +7,9 @@ namespace FeelYourOrgans.Contracts.Entities
     {
         public string Name { get; set; }
 
-        public int MaxIndicatorVakue { get; set; }
+        public double MaxIndicatorValue { get; set; }
 
-        public int MinIndicatorValue { get; set; }
+        public double MinIndicatorValue { get; set; }
 
         public string Description { get; set; }
 

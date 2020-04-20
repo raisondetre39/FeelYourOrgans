@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using FeelYourOrgans.Contracts.Requests;
 using AutoMapper;
+using System.Linq;
 
 namespace FeelYourOrgans.WebApi.Device.Controllers
 {
@@ -44,7 +45,12 @@ namespace FeelYourOrgans.WebApi.Device.Controllers
         [HttpPost]
         public async Task<IActionResult> AddIotDevice([FromBody] CreateDeviceRequest request)
         {
-            var result = await _iotService.CreateDevice(_mapper.Map<Iot>(request));
+            var device = _mapper.Map<Iot>(request);
+            device.IotIndicators = request.IndicatorIds
+                .Select(item => new IotIndicator() { IndicatorId = item })
+                .ToList();
+
+            var result = await _iotService.CreateDevice(device);
 
             if (result == Contracts.Enums.CreateDeviceStatus.IndicatorNotExists)
                 return BadRequest("Indicators do not exist");            
@@ -52,6 +58,17 @@ namespace FeelYourOrgans.WebApi.Device.Controllers
                 return BadRequest($"Limb id: {request.LimbId} do not exist");
             else  
                 return Created("Iot", request);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteDevice(int id)
+        {
+            if (id <= 0)
+                return BadRequest("Not valid id value");
+
+            await _iotService.DeleteDevice(id);
+
+            return Ok();
         }
     }
 }
