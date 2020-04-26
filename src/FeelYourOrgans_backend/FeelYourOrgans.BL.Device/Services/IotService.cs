@@ -21,9 +21,9 @@ namespace FeelYourOrgans.BL.Device.Services
             return await _iotRepository.Create(request);
         }
 
-        public async Task<Iot> GetDevice(int id)
+        public async Task<Iot> GetDevice(int id, int userId)
         {
-            return await _iotRepository.GetById(id);
+            return await _iotRepository.GetById(id, userId);
         }
 
         public async Task<IEnumerable<Iot>> GetDevices()

@@ -11,7 +11,7 @@ namespace FeelYourOrgans.DAL.Device.Repositories
 
         Task<CreateDeviceStatus> Create(Iot request);
 
-        Task<Iot> GetById(int id);
+        Task<Iot> GetById(int id, int userId);
 
         Task DeleteAsync(int id);
     }
