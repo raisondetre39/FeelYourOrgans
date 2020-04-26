@@ -7,6 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NewDeviceComponent } from '../new-device/new-device.component';
 import { NewUserComponent } from '../new-user/new-user.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile-admin',
@@ -20,7 +21,8 @@ export class ProfileAdminComponent implements OnInit, OnDestroy {
   userList = true;
   deviceList = false;
   private destroy$ = new Subject<void>();
-  constructor(public dialog: MatDialog,
+  constructor(public  translateService: TranslateService,
+              public dialog: MatDialog,
               private authenticationService: AuthenticationService,
               private userService: UserService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);

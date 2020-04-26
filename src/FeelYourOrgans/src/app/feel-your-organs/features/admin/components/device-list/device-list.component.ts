@@ -4,6 +4,7 @@ import { DeviceListService } from './device-list.service';
 import { ToastrService } from 'ngx-toastr';
 import { finalize, takeUntil } from 'rxjs/operators';
 import { IOTInfo } from 'src/app/shared/interfaces/iot.interface';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-device-list',
@@ -15,7 +16,8 @@ export class DeviceListComponent implements OnInit, OnDestroy {
   deviceList: IOTInfo[];
 
   private destroy$ = new Subject<void>();
-  constructor(private deviceListService: DeviceListService,
+  constructor(public  translateService: TranslateService,
+              private deviceListService: DeviceListService,
               public toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -33,10 +35,10 @@ export class DeviceListComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$))
       .subscribe(
         () => {
-          this.toastr.success('User deleted', 'Success');
+          this.toastr.success(this.translateService.instant('Device-List-Toastr.Deleted'), this.translateService.instant('Success'));
         },
         () => {
-          this.toastr.error('Something is wrong', 'Error');
+          this.toastr.error(this.translateService.instant('Something-Is-Wrong'), this.translateService.instant('Error'));
         }
       );
   }
@@ -49,7 +51,7 @@ export class DeviceListComponent implements OnInit, OnDestroy {
           this.deviceList = res;
         },
         () => {
-          this.toastr.error('Something wrong', 'Error');
+          this.toastr.error(this.translateService.instant('Something-Is-Wrong'), this.translateService.instant('Error'));
         }
       );
   }

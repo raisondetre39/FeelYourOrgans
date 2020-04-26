@@ -6,6 +6,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
 import { HeaderComponent } from './layouts/header/header.component';
 import { UserService } from './services/user.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { UserService } from './services/user.service';
     RouterModule,
     ToastrModule.forRoot(),
     MaterialModule,
+    TranslateModule
   ],
   exports: [
     CommonModule,
@@ -24,6 +26,7 @@ import { UserService } from './services/user.service';
     HeaderComponent,
     FormsModule,
     MaterialModule,
+    TranslateModule
   ]
 })
 export class SharedModule {

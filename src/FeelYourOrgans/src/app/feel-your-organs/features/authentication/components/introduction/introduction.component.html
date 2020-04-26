@@ -6,24 +6,24 @@
                     <ul style="list-style-type:none">
                         <li class="bg-text-purple font-weight-bold"> 
                             <img src="/assets/images/Fill 17.png">
-                            Feel your organs
+                            {{ 'Main-Title-1' | translate }} 
                         </li>
                         <li class="div-pt-30">
                             <ng-container class="d-flex text-capitalize">
                                 <span class="bg-text-title-1">
-                                    NEW ORGANS
+                                    {{ 'Main-Title-2' | translate }} 
                                 </span>
                                 <br/>
                                 <br/>
                                 <span class="bg-text-title pt-4">
-                                    THIS IS REALITY
+                                    {{ 'Main-Title-3' | translate }} 
                                 </span>
                             </ng-container>
                         </li>
-                        <li class="bg-text pt-3">Take care of your health easily</li>
+                        <li class="bg-text pt-3">{{ 'Main-Description' | translate }} </li>
                         <li class="pt-5">
                             <button mat-raised-button type="button" color="purple" class="btn-lg w-25" (click)="openAuthDialog()">
-                                Start
+                                {{ 'Start' | translate }}
                             </button>
                         </li>
                     </ul>

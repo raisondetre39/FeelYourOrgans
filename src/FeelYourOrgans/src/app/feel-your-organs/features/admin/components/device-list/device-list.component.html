@@ -1,11 +1,11 @@
 <div class="pt-5" *ngIf="deviceList">
     <ul class="list-group">
         <li class="list-group-item">
-            <span class="bg-text-lg"> DEVICES </span>
+            <span class="bg-text-lg"> {{ 'Device-List.Title' | translate }} </span>
             <br/>
             <br/>
             <br/>
-            <span class="bg-text"> A list of devices </span>
+            <span class="bg-text"> {{ 'Device-List.Description' | translate }} </span>
         </li>
         <ng-container *ngFor="let device of deviceList; let i = index">
             <li class="list-group-item">
@@ -23,7 +23,7 @@
                         <div class="float-right pt-2">
                             <button class="btn btn-danger btn-block btn-sm" (click)="deleteDevice(device.id)"
                             [disabled]='devicedeleted'> 
-                               Delete
+                            {{ 'Delete' | translate }}
                            </button>
                         </div>
                     </div>

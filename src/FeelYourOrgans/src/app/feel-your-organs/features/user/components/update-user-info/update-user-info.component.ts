@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UpdateUserService } from './update-user.service';
 import { AuthenticationService } from '../../../authentication/authentication.service';
 import { takeUntil } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-user-info',
@@ -19,7 +20,8 @@ export class UpdateUserInfoComponent implements OnInit , OnDestroy {
   loading = false;
   currentUser: IUser;
   private destroy$ = new Subject<void>();
-  constructor(private updateUserService: UpdateUserService,
+  constructor(public  translateService: TranslateService,
+              private updateUserService: UpdateUserService,
               private toastr: ToastrService,
               private formBuilder: FormBuilder,
               private authenticationService: AuthenticationService) {
@@ -73,11 +75,12 @@ export class UpdateUserInfoComponent implements OnInit , OnDestroy {
         () => {
           this.loading = false;
           this.toastr.success(`User profile updated`, `Success`);
+          this.toastr.success(this.translateService.instant('User-Profile-Updated'), this.translateService.instant('Success'));
           window.location.reload();
         },
         () => {
           this.loading = false;
-          this.toastr.error(`Something else`, `Error`);
+          this.toastr.error(this.translateService.instant('Something-Is-Wrong'), this.translateService.instant('Error'));
         }
       );
   }

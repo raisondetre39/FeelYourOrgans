@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-6">
             <div class="text-left pt-2 bg-text-sm">
-                <span>NEW USER</span>
+                <span>{{ 'User-Create-New.Title' | translate }}</span>
             </div>
         </div>
         <div class="col-6">
@@ -20,11 +20,11 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <mat-form-field appearance="outline">
-                                <mat-label>First name</mat-label>
+                                <mat-label>{{ 'First-Name' | translate }}</mat-label>
                                 <input matInput formControlName="firstName" [readonly]="loading"
                                     [class.is-invalid]="hasCustomError(userForm, 'firstName')" />
                                 <mat-error *ngIf="hasCustomError(userForm, 'firstName')">
-                                    First name is required.
+                                    {{ 'First-Name-Is-Required' | translate }}
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -32,11 +32,11 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <mat-form-field appearance="outline">
-                                <mat-label>Last name</mat-label>
+                                <mat-label>{{ 'Last-Name' | translate }}</mat-label>
                                 <input matInput formControlName="lastName" [readonly]="loading"
                                     [class.is-invalid]="hasCustomError(userForm, 'lastName')" />
                                 <mat-error *ngIf="hasCustomError(userForm, 'lastName')">
-                                    First name is required.
+                                    {{ 'Last-Name-Is-Required' | translate }}
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -46,11 +46,11 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <mat-form-field appearance="outline">
-                                <mat-label>Email</mat-label>
+                                <mat-label>{{ 'Email' | translate }}</mat-label>
                                 <input matInput formControlName="email" [readonly]="loading"
                                     [class.is-invalid]="hasCustomError(userForm, 'email')" />
                                 <mat-error *ngIf="hasCustomError(userForm, 'email')">
-                                    Email is required.
+                                    {{ 'Email-Is-Required' | translate }}
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -58,7 +58,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <mat-form-field appearance="outline">
-                                <mat-label>Device</mat-label>
+                                <mat-label>{{ 'Device' | translate }}</mat-label>
                                 <mat-select formControlName="iotId">
                                     <mat-option *ngFor="let element of deviceList" [disabled]="loading" 
                                     [value]="element.id">
@@ -66,7 +66,7 @@
                                     </mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="hasCustomError(userForm, 'iotId')">
-                                    Please choose Device.
+                                    {{ 'Please-Choose-Device' | translate }}
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -76,7 +76,7 @@
                     <mat-button-toggle-group>
                         <button [disabled]="loading" mat-raised-button color="purple" class="btn-block" (click)="onSubmit()">
                             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                            SAVE
+                            {{ 'SAVE' | translate }}
                         </button>
                         <mat-button-toggle (click)="resetForm()">
                             <mat-icon>cached</mat-icon>

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-6">
             <div class="text-left pt-2 bg-text-sm">
-                <span>NEW DEVICE</span>
+                <span>{{ 'Device-Create-New.Title' | translate }}</span>
             </div>
         </div>
         <div class="col-6">
@@ -20,11 +20,11 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <mat-form-field appearance="outline">
-                                <mat-label>Device`s name</mat-label>
+                                <mat-label>{{ 'Device-Name' | translate }}</mat-label>
                                 <input matInput formControlName="name" [readonly]="loading"
                                     [class.is-invalid]="hasCustomError(deviceForm, 'name')" />
                                 <mat-error *ngIf="hasCustomError(deviceForm, 'name')">
-                                    Device name is required.
+                                    {{ 'Device-Name-Is-Required' | translate }}
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -32,7 +32,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <mat-form-field appearance="outline">
-                                <mat-label>Organ</mat-label>
+                                <mat-label>{{ 'Organ' | translate }}</mat-label>
                                 <mat-select formControlName="limbId">
                                     <mat-option *ngFor="let element of limbs" [disabled]="loading" 
                                     [value]="element.id">
@@ -40,7 +40,7 @@
                                     </mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="hasCustomError(deviceForm, 'limbId')">
-                                    Please choose Organ.
+                                    {{ 'Please-Choose-Organ' | translate }}
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -50,7 +50,9 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <mat-form-field appearance="outline"> 
-                                <mat-label>Indicators</mat-label>
+                                <mat-label>
+                                    {{ 'Indicators' | translate }}
+                                </mat-label>
                                 <mat-select formControlName="indicatorIds" multiple>
                                     <mat-option *ngFor="let element of indicators" [disabled]="loading" 
                                     [value]="element.id">
@@ -58,7 +60,7 @@
                                     </mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="hasCustomError(deviceForm, 'indicatorIds')">
-                                    Please choose indicators.
+                                    {{ 'Please-Choose-Indicators' | translate }}
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -68,7 +70,7 @@
                             <mat-button-toggle-group>
                                 <button [disabled]="loading" mat-raised-button color="purple" class="btn-block" (click)="onSubmit()">
                                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                                    SAVE
+                                    {{ 'SAVE' | translate }}
                                 </button>
                                 <mat-button-toggle (click)="resetForm()">
                                     <mat-icon>cached</mat-icon>

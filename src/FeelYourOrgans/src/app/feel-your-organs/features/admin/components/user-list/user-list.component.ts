@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { UserListService } from './user-list.service';
 import { takeUntil, finalize } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-list',
@@ -15,7 +16,8 @@ export class UserListComponent implements OnInit, OnDestroy {
   userList: IFullUserInfo[];
 
   private destroy$ = new Subject<void>();
-  constructor(private userListService: UserListService,
+  constructor(public  translateService: TranslateService,
+              private userListService: UserListService,
               public toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -33,10 +35,10 @@ export class UserListComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$))
       .subscribe(
         () => {
-          this.toastr.success('User deleted', 'Success');
+          this.toastr.success(this.translateService.instant('User-Deleted'), this.translateService.instant('Success'));
         },
         () => {
-          this.toastr.error('Something is wrong', 'Error');
+          this.toastr.error(this.translateService.instant('Something-Is-Wrong'), this.translateService.instant('Error'));
         }
       );
   }
@@ -49,7 +51,7 @@ export class UserListComponent implements OnInit, OnDestroy {
           this.userList = res;
         },
         () => {
-          this.toastr.error('Something wrong', 'Error');
+          this.toastr.error(this.translateService.instant('Something-Is-Wrong'), this.translateService.instant('Error'));
         }
       );
   }

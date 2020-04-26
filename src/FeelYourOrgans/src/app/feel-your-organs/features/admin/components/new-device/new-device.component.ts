@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NewDeviceService } from './new-device.service';
 import { takeUntil } from 'rxjs/operators';
 import { IIndicatorInfo } from 'src/app/shared/interfaces/indicator.interface';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-new-device',
@@ -19,7 +20,8 @@ export class NewDeviceComponent implements OnInit, OnDestroy {
   indicators: IIndicatorInfo[];
   loading = false;
   private destroy$ = new Subject<void>();
-  constructor(private newDeviceService: NewDeviceService,
+  constructor(public  translateService: TranslateService,
+              private newDeviceService: NewDeviceService,
               private toastr: ToastrService,
               private formBuilder: FormBuilder) { }
 
@@ -37,7 +39,7 @@ export class NewDeviceComponent implements OnInit, OnDestroy {
         this.limbs = res;
       },
       () => {
-        this.toastr.error(`Something else`);
+        this.toastr.error(this.translateService.instant('Something-Is-Wrong'), this.translateService.instant('Error'));
       }
     );
   }
@@ -50,7 +52,7 @@ export class NewDeviceComponent implements OnInit, OnDestroy {
         this.indicators = res;
       },
       () => {
-        this.toastr.error(`Something else`);
+        this.toastr.error(this.translateService.instant('Something-Is-Wrong'), this.translateService.instant('Error'));
       }
     );
   }
@@ -71,11 +73,11 @@ export class NewDeviceComponent implements OnInit, OnDestroy {
         () => {
           this.loading = false;
           this.resetForm();
-          this.toastr.success(`Device created`, `Success`);
+          this.toastr.success(this.translateService.instant('Device-Created'), this.translateService.instant('Success'));
         },
         () => {
           this.loading = false;
-          this.toastr.error(`Something is wrong`, `Error`);
+          this.toastr.error(this.translateService.instant('Something-Is-Wrong'), this.translateService.instant('Error'));
         }
       );
   }

@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NewUserService } from './new-user.service';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-new-user',
@@ -17,7 +18,8 @@ export class NewUserComponent implements OnInit, OnDestroy {
   deviceList: IOTInfo[];
   loading = false;
   private destroy$ = new Subject<void>();
-  constructor(private newUserService: NewUserService,
+  constructor(public  translateService: TranslateService,
+              private newUserService: NewUserService,
               private toastr: ToastrService,
               private formBuilder: FormBuilder) { }
 
@@ -34,7 +36,7 @@ export class NewUserComponent implements OnInit, OnDestroy {
         this.deviceList = res;
       },
       () => {
-        this.toastr.error(`Something else`);
+        this.toastr.error(this.translateService.instant('Something-Is-Wrong'), this.translateService.instant('Error'));
       }
     );
   }
@@ -58,11 +60,11 @@ export class NewUserComponent implements OnInit, OnDestroy {
         () => {
           this.loading = false;
           this.resetForm();
-          this.toastr.success(`User created`, `Success`);
+          this.toastr.success(this.translateService.instant('User-Created'), this.translateService.instant('Success'));
         },
         () => {
           this.loading = false;
-          this.toastr.error(`Something is wrong`, `Error`);
+          this.toastr.error(this.translateService.instant('Something-Is-Wrong'), this.translateService.instant('Error'));
         }
       );
   }

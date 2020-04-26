@@ -4,22 +4,17 @@
     background-color: #F6F6F8;
 }
 
-.circleBase {
-    border-radius: 50%;
-}
 
 .type1 {
-    width: 130px;
-    height: 130px;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
     background: #7B4FFF;
-    position:relative; 
-    top: -410px; 
-    left: 35px;
 }
 
 .bg-text {
     font-family: Roboto;
-    font-size: 30px;
+    font-size: 25px;
     font-style: normal;
     color: #6B6974;
 }
@@ -38,7 +33,7 @@
 }
 
 .text-bg-1 {
-    font-size: 85px;
+    font-size: 90px;
     font-style: normal;
 }
 

@@ -14,11 +14,6 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        path: 'home',
-        loadChildren: () =>
-          import('./feel-your-organs/features/home/home.module').then(m => m.HomeModule)
-      },
-      {
         path: 'user',
         loadChildren: () =>
           import('./feel-your-organs/features/user/user.module').then(m => m.UserModule)

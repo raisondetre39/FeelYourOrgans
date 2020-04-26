@@ -1,9 +1,9 @@
 <mat-toolbar class="bg-div">
   <mat-toolbar-row>
-  <span class="text-white pl-3">Feel your organs</span>
+  <span class="text-white pl-3">{{ 'Main-Title-1' | translate }}</span>
   <span class="example-spacer"></span>
   <button mat-raised-button (click)="logout()" *ngIf="userAuthenticated()">
-    Logout
+    {{ 'LogOut' | translate }}
     <mat-icon>exit_to_app</mat-icon>
   </button>
   </mat-toolbar-row>
