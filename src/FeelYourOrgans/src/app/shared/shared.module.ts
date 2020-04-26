@@ -1,12 +1,36 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { RouterModule } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MaterialModule } from './material/material.module';
+import { HeaderComponent } from './layouts/header/header.component';
+import { UserService } from './services/user.service';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [HeaderComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    ToastrModule.forRoot(),
+    MaterialModule,
+  ],
+  exports: [
+    CommonModule,
+    ReactiveFormsModule,
+    HeaderComponent,
+    FormsModule,
+    MaterialModule,
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+  static forRoot(): ModuleWithProviders<SharedModule> {
+    return {
+      ngModule: SharedModule,
+      providers: [UserService]
+    };
+  }
+}

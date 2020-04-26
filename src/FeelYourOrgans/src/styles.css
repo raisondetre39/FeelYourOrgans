@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #F6F6F8; }
+.mat-button.mat-purple,
+.mat-stroked-button.mat-purple {
+    color: #7B4FFF;
+}
+.mat-button.mat-purple:hover,
+.mat-stroked-button.mat-purple:hover {
+  background-color:  white;
+}
+
+.mat-raised-button.mat-purple,
+.mat-flat-button.mat-purple,
+.mat-fab.mat-purple,
+.mat-mini-fab.mat-purple {
+  color: white;
+  background-color: #7B4FFF;
+}
+
+.mat-icon-button.mat-purple {
+  color:#7B4FFF;
+}

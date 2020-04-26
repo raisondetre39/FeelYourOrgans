@@ -1,0 +1,12 @@
+<mat-toolbar class="bg-div">
+  <mat-toolbar-row>
+  <span class="text-white pl-3">Feel your organs</span>
+  <span class="example-spacer"></span>
+  <button mat-raised-button (click)="logout()" *ngIf="userAuthenticated()">
+    Logout
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<ng-content></ng-content>
+    

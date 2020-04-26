@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { IUser } from '../shared/interfaces/user.interface';
+import { Router } from '@angular/router';
+import { AuthenticationService } from './features/authentication/authentication.service';
 
 @Component({
   selector: 'app-feel-your-organs',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeelYourOrgansComponent implements OnInit {
 
-  constructor() { }
+  currentUser: IUser;
 
-  ngOnInit(): void {
+  constructor(private router: Router,
+              private authenticationService: AuthenticationService) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  }
+
+  ngOnInit() {
+    /*if (!this.userAuthenticated()) {
+      this.router.navigate(['/login']);
+    }*/
+  }
+
+  userAuthenticated(): boolean {
+    return this.currentUser !== null;
   }
 
 }

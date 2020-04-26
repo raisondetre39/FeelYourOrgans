@@ -1,28 +1,10 @@
 import { Role } from '../extension/role';
+import { IOTInfo } from './iot.interface';
 
 export interface IUser {
     token?: string;
-    role: Role;
-    id: number;
-}
-
-export interface ICreateUser {
-    email: string;
-    password: string;
-    firstName: string;
-    lastName: string;
-    diseaseId: number;
-}
-
-export interface IUserPartialInfo {
-    email: string;
-    firstName: string;
-    lastName: string;
-    diseaseName: string;
-    password: string;
-    diseaseId: number;
-    role: number;
-    id: number;
+    isAdmin: boolean;
+    userId: number;
 }
 
 export interface IUserInfo {
@@ -30,19 +12,32 @@ export interface IUserInfo {
     firstName: string;
     lastName: string;
     password: string;
-    device: IDeviceInfo;
-    deviceId: number;
-    disease: IDisease;
-    diseaseId: number;
     role: number;
     id: number;
 }
 
-export interface IDisease {
-    diseaseName: string;
-    users: any;
+export interface ICreateUser {
+    email: string;
+    firstName: string;
+    lastName: string;
+    password: string;
+    IotId: number;
+}
+
+export interface IFullUserInfo {
+    email: string;
+    firstName: string;
+    lastName: string;
+    iot: IOTInfo;
+    iotId: number;
+    isAdmin: boolean;
     id: number;
 }
+
+
+
+
+
 
 export interface IUpdateUser {
     Email: string;

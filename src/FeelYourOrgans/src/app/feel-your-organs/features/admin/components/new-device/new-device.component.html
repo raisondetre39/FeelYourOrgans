@@ -1,0 +1,93 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="text-left pt-2 bg-text-sm">
+                <span>NEW DEVICE</span>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="text-right">
+                <button mat-icon-button matSuffix mat-dialog-close >
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="container" *ngIf="indicators && limbs">
+        <div class="pt-1">
+            <form [formGroup]="deviceForm" autocomplete="off" novalidate (ngSubmit)="onSubmit()">
+                <div class="row pt-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Device`s name</mat-label>
+                                <input matInput formControlName="name" [readonly]="loading"
+                                    [class.is-invalid]="hasCustomError(deviceForm, 'name')" />
+                                <mat-error *ngIf="hasCustomError(deviceForm, 'name')">
+                                    Device name is required.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Organ</mat-label>
+                                <mat-select formControlName="limbId">
+                                    <mat-option *ngFor="let element of limbs" [disabled]="loading" 
+                                    [value]="element.id">
+                                        {{element.name}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="hasCustomError(deviceForm, 'limbId')">
+                                    Please choose Organ.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <mat-form-field appearance="outline"> 
+                                <mat-label>Indicators</mat-label>
+                                <mat-select formControlName="indicatorIds" multiple>
+                                    <mat-option *ngFor="let element of indicators" [disabled]="loading" 
+                                    [value]="element.id">
+                                        {{element.name}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="hasCustomError(deviceForm, 'indicatorIds')">
+                                    Please choose indicators.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group pt-2">
+                            <mat-button-toggle-group>
+                                <button [disabled]="loading" mat-raised-button color="purple" class="btn-block" (click)="onSubmit()">
+                                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                    SAVE
+                                </button>
+                                <mat-button-toggle (click)="resetForm()">
+                                    <mat-icon>cached</mat-icon>
+                                </mat-button-toggle>
+                            </mat-button-toggle-group>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="container" *ngIf="indicators==null || limbs==null">
+        <div class="d-flex justify-content-center">
+            <mat-progress-spinner
+                color="primary"
+                mode="indeterminate"
+                [diameter]="100"
+                value="70">
+            </mat-progress-spinner>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+.bg-text {
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    color: #6B6974;
+}
+
+.bg-text-lg {
+    font-family: Roboto;
+    font-size: 24px;
+    font-style: normal;
+    color: #BEBDC2;
+}
+
+.bg-text-sm {
+    font-family: Roboto;
+    font-size: 15px;
+    font-style: normal;
+    color: #BEBDC2;
+}
+
+.img-fluid-1 {
+    max-width: 15%;
+    height: auto;
+}

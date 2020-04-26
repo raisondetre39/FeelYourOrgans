@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="text-left pt-2 bg-text-sm">
+                <span>NEW USER</span>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="text-right">
+                <button mat-icon-button matSuffix mat-dialog-close >
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="container" *ngIf="deviceList">
+        <div class="pt-1">
+            <form [formGroup]="userForm" autocomplete="off" novalidate (ngSubmit)="onSubmit()">
+                <div class="row pt-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <mat-form-field appearance="outline">
+                                <mat-label>First name</mat-label>
+                                <input matInput formControlName="firstName" [readonly]="loading"
+                                    [class.is-invalid]="hasCustomError(userForm, 'firstName')" />
+                                <mat-error *ngIf="hasCustomError(userForm, 'firstName')">
+                                    First name is required.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Last name</mat-label>
+                                <input matInput formControlName="lastName" [readonly]="loading"
+                                    [class.is-invalid]="hasCustomError(userForm, 'lastName')" />
+                                <mat-error *ngIf="hasCustomError(userForm, 'lastName')">
+                                    First name is required.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input matInput formControlName="email" [readonly]="loading"
+                                    [class.is-invalid]="hasCustomError(userForm, 'email')" />
+                                <mat-error *ngIf="hasCustomError(userForm, 'email')">
+                                    Email is required.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Device</mat-label>
+                                <mat-select formControlName="iotId">
+                                    <mat-option *ngFor="let element of deviceList" [disabled]="loading" 
+                                    [value]="element.id">
+                                        {{element.name}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="hasCustomError(userForm, 'iotId')">
+                                    Please choose Device.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group pt-2">
+                    <mat-button-toggle-group>
+                        <button [disabled]="loading" mat-raised-button color="purple" class="btn-block" (click)="onSubmit()">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                            SAVE
+                        </button>
+                        <mat-button-toggle (click)="resetForm()">
+                            <mat-icon>cached</mat-icon>
+                        </mat-button-toggle>
+                    </mat-button-toggle-group>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="container" *ngIf="deviceList==null">
+        <div class="d-flex justify-content-center">
+            <mat-progress-spinner
+                color="primary"
+                mode="indeterminate"
+                [diameter]="100"
+                value="70">
+            </mat-progress-spinner>
+        </div>
+    </div>
+</div>

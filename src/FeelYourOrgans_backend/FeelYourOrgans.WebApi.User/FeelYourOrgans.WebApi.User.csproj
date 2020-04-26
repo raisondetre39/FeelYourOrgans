@@ -22,4 +22,5 @@
     <ProjectReference Include="..\FeelYourOrgans.BL.User\FeelYourOrgans.BL.User.csproj" />
     <ProjectReference Include="..\FeelYourOrgans.DAL.User\FeelYourOrgans.DAL.User.csproj" />
   </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 </Project>

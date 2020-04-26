@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="from-group">
+                <div class="pt-5 h-75 d-flex justify-content-center"> 
+                    <mat-card>
+                        <mat-card-header class="bg-text">
+                            <mat-card-title>
+                                PROFILE                        
+                            </mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mat-progress-spinner
+                                color="primary"
+                                mode="indeterminate"
+                                [diameter]="200"
+                                value="70">
+                            </mat-progress-spinner>
+                            <div class="text-center">
+                                <div class="pt-5 pb-5">
+                                    <span class="bg-text-md">
+                                        {{userInfo?.firstName}} {{userInfo?.lastName}}
+                                    </span>
+                                    <br/>
+                                    <br/>
+                                    <span class="bg-text-sm">
+                                        Administrator
+                                    </span>
+                                </div>
+                                <button mat-stroked-button class="btn-block text-left" 
+                                    type="button" color="purple" (click)="getListUser()">
+                                    USERS
+                                    <mat-icon class="float-right pt-1">supervisor_account</mat-icon>
+                                </button>
+                                <button mat-stroked-button class="btn-block text-left" 
+                                    type="button" color="purple" (click)="getDeviceList()">
+                                    DEVICES
+                                    <mat-icon class="float-right pt-1">receipt</mat-icon>
+                                </button>
+                                <div class="circleBase type1">
+                                    <div class="d-flex justify-content-around text-white">
+                                        <span class="text-bg-1">
+                                            A
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                        <button *ngIf="userList" mat-flat-button class="btn-block text-center" 
+                            type="button" color="purple" (click)="openCreateDialog()">
+                            + ADD NEW USER
+                        </button>
+                        <button *ngIf="deviceList" mat-flat-button class="btn-block text-center" 
+                            type="button" color="purple" (click)="openCreateDeviceDialog()">
+                            + ADD NEW DEVICE
+                        </button>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div *ngIf="userList">
+                <app-user-list></app-user-list>
+            </div>
+            <div *ngIf="deviceList">
+                <app-device-list></app-device-list>
+            </div>
+        </div>
+    </div>
+</div>

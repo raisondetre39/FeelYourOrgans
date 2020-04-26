@@ -18,12 +18,12 @@ export class AuthenticationService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(): IUser {
+  public get currentUserValue() {
     return this.currentUserSubject.value;
   }
 
   login(form): Observable<any> {
-    return this.http.post<any>(this.apiLink.authApi + 'authentication', form.value)
+    return this.http.post<any>(this.apiLink.authApi, form.value)
     .pipe(map(user => {
       if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
