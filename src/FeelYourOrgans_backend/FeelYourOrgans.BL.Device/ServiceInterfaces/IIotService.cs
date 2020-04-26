@@ -11,7 +11,7 @@ namespace FeelYourOrgans.BL.Device.ServiceInterfaces
 
         Task<CreateDeviceStatus> CreateDevice(Iot request);
 
-        Task<Iot> GetDevice(int id);
+        Task<Iot> GetDevice(int id, int userId);
 
         Task DeleteDevice(int id);
     }

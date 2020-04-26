@@ -53,7 +53,7 @@ namespace FeelYourOrgans.DAL.Device.RepositoryInterfaces
             }
         }
 
-        public async Task<Iot> GetById(int id)
+        public async Task<Iot> GetById(int id, int userId)
         {
             using (var context = new MicroserviceDbContext())
             {
@@ -63,7 +63,7 @@ namespace FeelYourOrgans.DAL.Device.RepositoryInterfaces
 
                 iot.IotIndicators
                     .ForEach(ind => ind.Records = context.Set<IotRecord>()
-                        .Where(item => item.IotIndicatorId == ind.Id).ToList());
+                        .Where(item => item.IotIndicatorId == ind.Id && item.UserId == userId).ToList());
 
                 return iot;
             }

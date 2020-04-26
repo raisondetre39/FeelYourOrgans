@@ -28,13 +28,13 @@ namespace FeelYourOrgans.WebApi.Device.Controllers
             return await _iotService.GetDevices();
         }  
         
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetDevice(int id)
+        [HttpGet("{id}/user/{uid}")]
+        public async Task<IActionResult> GetDevice([FromRoute]int id, [FromRoute]int uid)
         {
-            if (id <= 0)
+            if (id <= 0 || uid <= 0)
                 return BadRequest("Not valid id value");
 
-            var device = await _iotService.GetDevice(id);
+            var device = await _iotService.GetDevice(id, uid);
 
             if (device == null)
                 return NotFound($"Device with id: {id} not found");
