@@ -1,1 +1,40 @@
-<p>graphs works!</p>
+<div class="container" *ngIf="deviceIndicator!=null">
+    <div class="row">
+        <div class="col-md-9 pt-5">
+            <div class="card">
+                <span class="bg-text-sm pt-2 pl-2">
+                    {{ 'Graphs' | translate }} 
+                </span>
+                <span class="bg-text-sm pt-2 pl-2">
+                    {{ getActiveIndicatorName() }}
+                </span>
+                <span class="bg-text-sm pt-2 pl-2">
+                    {{ getActiveIndicatorDescription() }}
+                </span>
+                <div class="flex">
+                    <div class="flex-item">
+                      <div style="display: block;">
+                            <canvas baseChart width="100" height="50"
+                                [datasets]="lineChartData"
+                                [labels]="lineChartLabels"
+                                [colors]="lineChartColors"
+                                [legend]="lineChartLegend"
+                                [chartType]="lineChartType"
+                                [plugins]="lineChartPlugins">
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 pt-5">
+            <ul class="list-inline" *ngFor="let element of deviceIndicator.iotIndicators">
+                <li>
+                  <button mat-raised-button (click)="displayGrap(element.indicatorId)">
+                    {{ getIndicatorName(element.indicatorId) }}
+                  </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

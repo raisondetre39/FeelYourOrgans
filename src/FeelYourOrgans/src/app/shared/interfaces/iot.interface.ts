@@ -1,10 +1,11 @@
 import { ILimbInfo } from './limb.interface';
+import { IIotIndicator } from './indicator.interface';
 
 export interface IOTInfo {
     name: string;
     limb: ILimbInfo;
     limbId: number;
-    iotIndicators: any;
+    iotIndicators: IIotIndicator[];
     id: number;
 }
 

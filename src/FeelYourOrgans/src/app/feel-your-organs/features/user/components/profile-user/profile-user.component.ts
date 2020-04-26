@@ -16,8 +16,8 @@ export class ProfileUserComponent implements OnInit, OnDestroy {
 
   currentUser: IUser;
   userInfo: IFullUserInfo;
-  userList = true;
-  deviceList = false;
+  graphs = true;
+  states = false;
   private destroy$ = new Subject<void>();
   constructor(public dialog: MatDialog,
               private authenticationService: AuthenticationService,
@@ -35,14 +35,14 @@ export class ProfileUserComponent implements OnInit, OnDestroy {
       .subscribe(res => this.userInfo = res);
   }
 
-  getListUser() {
-    this.deviceList = false;
-    this.userList = true;
+  getGraphs() {
+    this.graphs = false;
+    this.states = true;
   }
 
-  getDeviceList() {
-    this.deviceList = true;
-    this.userList = false;
+  getStates() {
+    this.graphs = true;
+    this.states = false;
   }
 
   openDialogProfile() {

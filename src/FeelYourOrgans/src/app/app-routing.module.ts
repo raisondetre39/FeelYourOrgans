@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FeelYourOrgansComponent } from './feel-your-organs/feel-your-organs.component';
+import { AuthGuard } from './guards/auth.guard';
+import { Role } from './shared/extension/role';
 
 
 const routes: Routes = [
@@ -10,18 +12,22 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'user',
         pathMatch: 'full'
       },
       {
         path: 'user',
         loadChildren: () =>
-          import('./feel-your-organs/features/user/user.module').then(m => m.UserModule)
+          import('./feel-your-organs/features/user/user.module').then(m => m.UserModule),
+        canActivate: [AuthGuard],
+        data: { roles: [Role.User] }
       },
       {
         path: 'admin',
         loadChildren: () =>
-          import('./feel-your-organs/features/admin/admin.module').then(m => m.AdminModule)
+          import('./feel-your-organs/features/admin/admin.module').then(m => m.AdminModule),
+        canActivate: [AuthGuard],
+        data: { roles: [Role.Admin] }
       },
     ]
   },

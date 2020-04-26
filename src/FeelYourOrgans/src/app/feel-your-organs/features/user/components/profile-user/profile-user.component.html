@@ -28,12 +28,12 @@
                                     </span>
                                 </div>
                                 <button mat-stroked-button class="btn-block text-left" 
-                                    type="button" color="purple" (click)="getListUser()">
+                                    type="button" color="purple" (click)="getStates()">
                                     {{ 'States' | translate }} 
                                     <mat-icon class="float-right pt-1">receipt</mat-icon>
                                 </button>
                                 <button mat-stroked-button class="btn-block text-left" 
-                                    type="button" color="purple" (click)="getDeviceList()">
+                                    type="button" color="purple" (click)="getGraphs()">
                                     {{ 'Graphs' | translate }} 
                                     <mat-icon class="float-right pt-1">trending_up</mat-icon>
                                 </button>
@@ -56,6 +56,12 @@
             </div>
         </div>
         <div class="col-md-8">
+            <div *ngIf="graphs">
+                <app-graphs></app-graphs>
+            </div>
+            <div *ngIf="states">
+                <app-graphs></app-graphs>
+            </div>
         </div>
     </div>
 </div>

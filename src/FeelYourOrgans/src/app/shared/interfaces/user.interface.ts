@@ -1,4 +1,3 @@
-import { Role } from '../extension/role';
 import { IOTInfo } from './iot.interface';
 
 export interface IUser {
@@ -34,45 +33,9 @@ export interface IFullUserInfo {
     id: number;
 }
 
-
-
-
-
-
 export interface IUpdateUser {
     Email: string;
     Password: string;
     FirstName: string;
     LastName: string;
 }
-
-export interface IDeviceInfo {
-    deviceName: string;
-    userId: number;
-    deviceIndicators: IDeviceIndicator[];
-    id: number;
-}
-
-export interface IDeviceIndicator {
-    deviceId: number;
-    indicator: IIndicatorInfo;
-    indicatorId: number;
-    indicatorValues: IIndicatorValue[];
-    id: number;
-}
-
-export interface IIndicatorValue {
-    deviceIndicatorId: number;
-    value: number;
-    date: string;
-    id: number;
-}
-
-export interface IIndicatorInfo {
-    indicatorName: string;
-    maxValue: number;
-    minValue: number;
-    devices: [null];
-    id: number;
-}
-
