@@ -53,5 +53,6 @@
 	"User-Deleted": "User deleted",
     "User-Profile-Updated": "User profile updated",
     "Start": "Start",
-    "LogOut": "Logout"
+	"LogOut": "Logout",
+	"State": "STATE"
 }

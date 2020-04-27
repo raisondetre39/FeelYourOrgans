@@ -39,7 +39,7 @@
 	"Password-Is-Required": "Пароль необхідний.",
 	"Login": "ВХІД",
 	"Pacient": "ПАЦІЕНТ",
-	"States": "СТАТУС",
+	"States": "Стани",
 	"Graphs": "ГРАФИК",
 	"P": "П",
 	"Close": "ЗАКРИТИ",
@@ -53,5 +53,6 @@
 	"User-Deleted": "Користувача видалено",
     "User-Profile-Updated": "Профіль користувача оновлено",
     "Start": "Почати",
-    "LogOut": "Вихід"
+    "LogOut": "Вихід",
+    "State": "Стан"
 }

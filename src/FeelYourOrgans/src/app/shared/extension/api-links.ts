@@ -1,9 +1,7 @@
 export enum ApiLink {
-    userApi = 'https://localhost:44313/api/users/',
-    limbApi = 'https://localhost:44334/api/Limbs/',
-    authApi = 'https://localhost:44313/api/Authentication/',
-    deviceApi = 'https://localhost:44334/api/Iots/',
-    indicatorApi = 'https://localhost:44334/api/Indicators/'
-
-
+    userApi = 'https://kz9dsirce4.execute-api.us-east-1.amazonaws.com/Prod/api/users/',
+    limbApi = 'https://i3czk1sekf.execute-api.us-east-1.amazonaws.com/Prod/api/Limbs/',
+    authApi = 'https://kz9dsirce4.execute-api.us-east-1.amazonaws.com/Prod/api/Authentication/',
+    deviceApi = 'https://i3czk1sekf.execute-api.us-east-1.amazonaws.com/Prod/api/Iots/',
+    indicatorApi = 'https://i3czk1sekf.execute-api.us-east-1.amazonaws.com/Prod/api/Indicators/'
 }

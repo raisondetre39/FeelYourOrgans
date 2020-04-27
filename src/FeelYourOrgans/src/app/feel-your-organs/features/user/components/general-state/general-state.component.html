@@ -1,1 +1,33 @@
-<p>general-state works!</p>
+<div class="container pt-5" *ngIf="deviceIndicator!=null">
+    <div class="row card-group p-2"> 
+        <div class ="col-3 d-flex align-items-stretch p-3" *ngFor="let indicator of deviceIndicator.iotIndicators; let j = index">
+            <div class="card w-100" style="width:600px">
+                <div class="container my-2">
+                    <label class="bg-text-sm pt-2 pl-2 pb-2" type="text">
+                        {{ 'State' | translate }} 
+                    </label>
+                    <br/>
+                    <span class="bg-text-bg pt-2 pl-2">
+                        {{ getIndicatorName(indicator.id) }}
+                    </span>
+                    <br/>
+                    <span class="bg-text-sm pt-2 pl-2">
+                        {{ getIndicatorDescription(indicator.id) }}
+                    </span>
+                    <br/>
+                    <br/>
+                    <div class="mx-auto text-center pt-2" *ngIf="spinnerStyle(indicator.id)">
+                        <div class="spinner-border text-success" style="width: 6rem; height: 6rem;" role="status">
+                        </div>
+                    </div>
+                    <div class="mx-auto text-center" *ngIf="!spinnerStyle(indicator.id)">
+                        <div class="spinner-border text-danger" style="width: 6rem; height: 6rem;" role="status">
+                        </div>
+                    </div>
+                    <h4 class="text-center text-black pt-2"> {{ getActualValue(indicator.id) }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

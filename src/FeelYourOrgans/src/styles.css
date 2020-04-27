@@ -19,6 +19,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
   background-color: #7B4FFF;
 }
 
-.mat-icon-button.mat-purple {
+.mat-progress-spinner.mat-purple {
   color:#7B4FFF;
 }

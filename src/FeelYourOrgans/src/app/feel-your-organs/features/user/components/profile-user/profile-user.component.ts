@@ -16,8 +16,8 @@ export class ProfileUserComponent implements OnInit, OnDestroy {
 
   currentUser: IUser;
   userInfo: IFullUserInfo;
-  graphs = true;
-  states = false;
+  graphs = false;
+  states = true;
   private destroy$ = new Subject<void>();
   constructor(public dialog: MatDialog,
               private authenticationService: AuthenticationService,
@@ -36,13 +36,13 @@ export class ProfileUserComponent implements OnInit, OnDestroy {
   }
 
   getGraphs() {
-    this.graphs = false;
-    this.states = true;
+    this.graphs = true;
+    this.states = false;
   }
 
   getStates() {
-    this.graphs = true;
-    this.states = false;
+    this.graphs = false;
+    this.states = true;
   }
 
   openDialogProfile() {
